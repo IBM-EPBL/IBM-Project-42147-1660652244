@@ -1,0 +1,17 @@
+#Importing ImageDataGenerator from Keras
+#image preprocessing (or) image augmentation
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+#Defining the Parameters
+train_datagen = ImageDataGenerator(rescale=1./255,shear_range=0.2,zoom_range=0.2,horizontal_flip=True,vertical_flip=True)
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+#Applying ImageDataGenerator functionality to train dataset
+x_train = train_datagen.flow_from_directory(r"D:\FFDDataset\train_set",
+                                            target_size=(256,256),
+                                            batch_size=32,
+                                            class_mode="binary")
+x_test = test_datagen.flow_from_directory(r"D:\FFDDataset\test_set",
+                                          target_size=(256,256),
+                                          batch_size=32,
+                                          class_mode="binary")
